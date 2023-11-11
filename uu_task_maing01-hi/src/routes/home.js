@@ -47,7 +47,8 @@ let Home = createVisualComponent({
                 style={{
                   backgroundColor: 
                   selectedMember === member.id ? "#89D4F9" : "#DAECFA",
-                  color: "grey"
+                  color: "grey",
+                  margin: "5px"
                 }}
               >
                 { member.name } { member.surname }{" "}{member.owner && "(vlastník)"}

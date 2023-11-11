@@ -52,7 +52,6 @@ function MemberList ({ currentUserRole, selectedMember }) {
                         <Uu5Elements.ListItem
                             key={item.id}
                             actionList={
-                            //item.owner ? [{ icon: "uugds-account", colorScheme: "important" }] : 
                             currentUserRole || selectedMember === item.id ? [  
                                 { icon: "uugds-close", colorScheme: "negative", onClick: () => handleMemberDelete(item.id) },
                               ] : [""]
