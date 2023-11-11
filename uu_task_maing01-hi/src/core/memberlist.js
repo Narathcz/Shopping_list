@@ -53,7 +53,7 @@ function MemberList ({ currentUserRole, selectedMember }) {
                             key={item.id}
                             actionList={
                             currentUserRole || selectedMember === item.id ? [  
-                                { icon: "uugds-close", colorScheme: "negative", onClick: () => handleMemberDelete(item.id) },
+                                { icon: "uugds-close", colorScheme: "negative", onClick: () => handleMemberDelete( item.id ) },
                               ] : [""]
                             }
                             colorScheme="blue" significance="common">

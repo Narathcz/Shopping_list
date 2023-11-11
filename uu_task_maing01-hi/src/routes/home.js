@@ -44,7 +44,7 @@ let Home = createVisualComponent({
               <Uu5Elements.Button
                 key = { member.id }
                 onClick = {() => handleMemberSelect ( member ) }
-                style={{
+                style = {{
                   backgroundColor: 
                   selectedMember === member.id ? "#89D4F9" : "#DAECFA",
                   color: "grey",
