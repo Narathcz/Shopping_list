@@ -17,6 +17,6 @@ function Item ( props ) {
       <span style = { textContainerStyle } >{ props.name }</span>
     </Uu5Elements.ListItem>
   );
-}
+} 
 
 export default Item;

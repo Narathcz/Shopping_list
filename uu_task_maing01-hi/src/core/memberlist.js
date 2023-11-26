@@ -2,16 +2,16 @@ import { useState, Utils } from "uu5g05";
 import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms";
 import Config from "../config/config";
-import { INITIAL_MEMBER_LIST } from "./constants";
+import { INITIAL_DATA } from "./constants";
 
-function MemberList ({ currentUserRole, selectedMember }) { 
-    const [memberList, setMemberList] = useState (INITIAL_MEMBER_LIST);
+function MemberList ({ currentUserRole, selectedMember, indexNumber }) { 
+
+    const [memberList, setMemberList] = useState (INITIAL_DATA[indexNumber]?.memberList || []);
     const [modal2Open, setModal2Open] = useState (false);
     const [showMemberList, setShowMemberList] = useState(false);
-    
 
     function handleMemberDelete ( id ) {
-        setMemberList (([...actualMemberList]) => {
+        setMemberList (([...actualMemberList]) => { 
             const index = actualMemberList.findIndex (( item ) => item.id === id);
             actualMemberList.splice ( index, 1 );
             return actualMemberList;
@@ -35,6 +35,8 @@ function MemberList ({ currentUserRole, selectedMember }) {
                     className={Config.Css.css({
                     width: "500px",
                     maxWidth: "100%",
+                    marginTop: "20px",
+                    marginBottom: "20px"
                     })}
                     colorScheme="blue"
                     significance="distinct">
@@ -54,7 +56,7 @@ function MemberList ({ currentUserRole, selectedMember }) {
                             actionList={
                             currentUserRole || selectedMember === item.id ? [  
                                 { icon: "uugds-close", colorScheme: "negative", onClick: () => handleMemberDelete( item.id ) },
-                              ] : [""]
+                              ] : [""] 
                             }
                             colorScheme="blue" significance="common">
                             {item.name} {item.surname} {item.owner && "(vlastník)"}

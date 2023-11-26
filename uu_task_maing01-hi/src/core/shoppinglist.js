@@ -3,14 +3,13 @@ import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms";
 import Item from "./item";
 import Config from "../config/config";
-import { INITIAL_NAME } from "./constants";
-import { INITIAL_SHOPPING_LIST } from "./constants";
+import { INITIAL_DATA } from "./constants";
 
-function ShoppingList ({ currentUserRole }) { 
-    const [shoppingList, setShoppingList] = useState ( INITIAL_SHOPPING_LIST );
+function ShoppingList ({ currentUserRole, indexNumber }) { 
+    const [shoppingList, setShoppingList] = useState ( INITIAL_DATA[indexNumber]?.shoppingList || [] );
     const [modalOpen, setModalOpen] = useState ( false );
     const [modal1Open, setModal1Open] = useState ( false );
-    const [editHeader, setEditHeader] = useState( INITIAL_NAME ); 
+    const [editHeader, setEditHeader] = useState( INITIAL_DATA[indexNumber]?.name || [] ); 
     const [showAll, setShowAll] = useState( false );
 
     function handleDelete ( id ) {
@@ -33,7 +32,7 @@ function ShoppingList ({ currentUserRole }) {
 
     function handleEditHeader ( e ) {   
         const newHeader = e.data.value.name;
-        setEditHeader ( newHeader );
+        setEditHeader ( newHeader ); 
         setModal1Open ( false );
     } 
 
@@ -75,7 +74,7 @@ function ShoppingList ({ currentUserRole }) {
 
                     <Uu5Elements.Button 
                         onClick= { () => setShowAll( !showAll ) } 
-                        className = {Config.Css.css ({ flex: 1 })} 
+                        className = {Config.Css.css ({ flex: 1 })}  
                         colorScheme="blue" significance="distinct" >{ showAll ? "Pouze nedokončené položky" : "Všechny položky"}
                     </Uu5Elements.Button>
                 </div>
