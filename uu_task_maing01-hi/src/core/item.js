@@ -11,7 +11,7 @@ function Item ( props ) {
         { icon: "uugds-check", colorScheme: "positive", onClick: props.onStrikeText },
         { icon: "uugds-close", colorScheme: "negative", onClick: props.onDelete }
       ]}
-      colorScheme = "blue"
+      colorScheme = "building"
       significance = "common"
     >
       <span style = { textContainerStyle } >{ props.name }</span>

@@ -1,14 +1,15 @@
-import { useState } from "uu5g05";
+import { useState, Lsi } from "uu5g05";
 import Uu5TilesElements from "uu5tilesg02-elements";
 import Uu5Elements from "uu5g05-elements";
 import { setName } from "./helperfunctions";
+import importLsi from "../lsi/import-lsi.js";
 
 const spacingStyle = {
     marginBottom: "10px"
 };
 
 const tileStyle = {
-    width: "105%", 
+    width: "100%", 
 };
 
 function ListTile ( props ) {
@@ -49,9 +50,13 @@ function ListTile ( props ) {
 
         const listData = props.nameList.find(( item ) => item.name === props.data.name );
         const ownerMember = listData.memberList.find(( member ) => member.owner);
-        const footerText = ownerMember ? `Vlastník seznamu: ${ ownerMember.name } ${ ownerMember.surname }` : '';
+        const footerText = ownerMember ? 
+          <>
+            <Lsi import = { importLsi } path = {[ "ListTile", "owner" ]} />
+            { ` ${ ownerMember.name } ${ ownerMember.surname }`}
+          </> : '';
         const hrefValue = clickedType === "tile" ? "list" : "#";
-        const colorValue = clickedType === "tile" ? "dark-blue" : "blue";
+        const colorValue = clickedType === "tile" ? "common" : "highlighted";
 
         const isArchived = listData.archive || false;
         const tileStyleWithTextDecoration = isArchived ? { textDecoration: "line-through", color: "red" } : {};
@@ -64,8 +69,8 @@ function ListTile ( props ) {
                   header = { props.data.name } 
                   footer = { footerText }  
                   footerSignificance = "distinct"
-                  headerSignificance = "highlighted" 
-                  headerColorScheme = { colorValue } 
+                  headerColorScheme = "neutral"
+                  headerSignificance = { colorValue }
                   actionList = {
                     props.selectMember.surname === ownerMember.surname ? [
                     { icon: "uugdsstencil-uiaction-archive", onClick: handleStrikeText }, { icon: "uugds-close", onClick: handleRemoveListClick }]: [""] } 
@@ -73,13 +78,15 @@ function ListTile ( props ) {
               </Uu5TilesElements.Tile>
             </Uu5Elements.Link>
             <Uu5Elements.Modal 
-              open={confirmationModalOpen} 
-              onClose={handleCancelRemoveList} 
-              header="Potvrďte odstranění seznamu" 
-              footer={<Uu5Elements.Button 
-              onClick={handleConfirmRemoveList}
-              >Potvrdit</Uu5Elements.Button>}>
-                Opravdu chcete odstranit tento seznam?
+              open = {confirmationModalOpen} 
+              onClose = {handleCancelRemoveList} 
+              header = {<Lsi import = { importLsi } path = {[ "ListTile", "headerDelete" ]} />} 
+              footer = {<Uu5Elements.Button 
+              onClick = {handleConfirmRemoveList}
+              >
+                <Lsi import = { importLsi } path = {[ "ListTile", "confirm" ]} />
+              </Uu5Elements.Button>}>
+                <Lsi import = { importLsi } path = {[ "ListTile", "confirmDelete" ]} />
             </Uu5Elements.Modal>
           </>
         )

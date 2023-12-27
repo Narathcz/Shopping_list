@@ -17,7 +17,9 @@
     "welcome": "Welcome",
     "intro": "<uu5string/>This template consist of prepared client and server side. Shown components demonstrate possibilities and way of using. For application developing purposes they are suitable for modifying, copying and deleting. More about uuApp Structure see documentation&nbsp; <Uu5Elements.Link href=\"https://uuapp.plus4u.net/uu-bookkit-maing01/e884539c8511447a977c7ff070e7f2cf/book/page?code=stepByStepApp\" target=\"_blank\">uuAppDevKit</Uu5Elements.Link>.",
     "clientSide": "<uu5string/>Libraries <Uu5Elements.Link href=\"https://uuapp.plus4u.net/uu-bookkit-maing01/05ecbf4e8bca405290b1a6d4cee8813a/book\" target=\"_blank\">uu5</Uu5Elements.Link> and <Uu5Elements.Link href=\"https://uuapp.plus4u.net/uu-bookkit-maing01/83c1406c4fc541dba975941424106318/book\" target=\"_blank\">uuPlus4U5</Uu5Elements.Link> are used for developing of client side.",
-    "serverSide": "<uu5string/>It is necessary to initialize application workspace for running server side. See manual <Uu5Elements.Link href=\"https://uuapp.plus4u.net/uu-bookkit-maing01/e884539c8511447a977c7ff070e7f2cf/book/page?code=stepByStepApp\" target=\"_blank\">uuApp Template Developer Guide</Uu5Elements.Link>"
+    "serverSide": "<uu5string/>It is necessary to initialize application workspace for running server side. See manual <Uu5Elements.Link href=\"https://uuapp.plus4u.net/uu-bookkit-maing01/e884539c8511447a977c7ff070e7f2cf/book/page?code=stepByStepApp\" target=\"_blank\">uuApp Template Developer Guide</Uu5Elements.Link>",
+    "chooseMember": "Choose member:",
+    "title": "SHOPPING LISTS"
   },
   "InitAppWorkspace": {
     "notAuthorized": "You do not have sufficient rights to use the application.",
@@ -32,5 +34,35 @@
   "Menu": {
     "home": "Welcome",
     "about": "About Application"
+  },
+  "ListView": {
+    "add": "+ Add list",
+    "archButton1": "Without archived",
+    "archButton2": "With archived",
+    "modalHeader": "Enter list name:"
+  },
+  "ListTile": {
+    "owner": "Owner of the list:",
+    "confirmDelete": "Do you really want to delete the list?",
+    "confirm": "Confirm",
+    "headerDelete": "Confirm the deletion of the list"
+  },
+  "List": {
+    "title": "SHOPPING LIST",
+    "backButton": "Back to home page"
+  },
+  "ShoppingList": {
+    "addButton": "+ Add item",
+    "allButton1": "Only incomplete items",
+    "allButton2": "All items",
+    "titleChange": "Enter new name...",
+    "addItemModal": "Enter name of item..."
+  },
+  "MemberList": {
+    "hideMemberList": "Close member list",
+    "showMemberList": "Show member list",
+    "titleMemberList": "List of members:",
+    "addMember": "+ Add member",
+    "addMemberModal": "Enter name and surname..."
   }
 }

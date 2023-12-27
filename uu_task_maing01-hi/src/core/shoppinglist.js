@@ -1,9 +1,11 @@
-import { useState, Utils } from "uu5g05";
+import { useState, Utils, Lsi } from "uu5g05";
 import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms";
 import Item from "./item";
 import Config from "../config/config";
 import { INITIAL_DATA } from "./constants";
+import importLsi from "../lsi/import-lsi.js";
+
 
 function ShoppingList ({ currentUserRole, indexNumber }) { 
     const [shoppingList, setShoppingList] = useState ( INITIAL_DATA[indexNumber]?.shoppingList || [] );
@@ -49,9 +51,11 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
     }
 
     return (
-        <div>
+        <div> 
             <Uu5Elements.Block 
-                header = { <span style = {{ color: "#000099" }}>{ editHeader }</span> }
+                header = { <span style = {{ color: "#000099" }}>
+                    <Uu5Elements.Text colorScheme = "building" significance = "common" >{ editHeader }</Uu5Elements.Text>                
+                </span> }
                 headerType = "title"
                 actionList = {
                     currentUserRole ? [{ icon: "uugds-pencil", onClick: () => setModal1Open( true ) }] : []}
@@ -69,13 +73,19 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
                     <Uu5Elements.Button 
                         onClick= { () => setModalOpen ( true ) } 
                         className = { Config.Css.css ({ flex: 1, marginRight: "10px" })} 
-                        colorScheme="blue" significance="distinct" >+ Přidat položku
+                        colorScheme="building" significance="distinct" >
+                            <Lsi import = { importLsi } path = {[ "ShoppingList", "addButton" ]} />
                     </Uu5Elements.Button>
 
                     <Uu5Elements.Button 
                         onClick= { () => setShowAll( !showAll ) } 
                         className = {Config.Css.css ({ flex: 1 })}  
-                        colorScheme="blue" significance="distinct" >{ showAll ? "Pouze nedokončené položky" : "Všechny položky"}
+                        colorScheme = "building" significance = "distinct" >
+                            { showAll ? 
+                            <Lsi import = { importLsi } path = {[ "ShoppingList", "allButton1" ]} /> 
+                            : 
+                            <Lsi import = { importLsi } path = {[ "ShoppingList", "allButton2" ]} />
+                            }
                     </Uu5Elements.Button>
                 </div>
 
@@ -83,14 +93,14 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
                     <Uu5Elements.Modal
                         open = { modal1Open }
                         onClose = { () => setModal1Open ( false ) }
-                        header = "Změna nadpisu"
+                        header = {<Lsi import = { importLsi } path = {[ "ShoppingList", "titleChange" ]} />}
                         footer = {
                             <div>
                                 <Uu5Forms.SubmitButton />
                             </div>
                         }>
                         { editHeader ? (
-                        <Uu5Forms.FormText name = "name" value = { editHeader } placeholder = "Nový nadpis...." />
+                        <Uu5Forms.FormText name = "name" value = { editHeader } />
                         ) : (
                         <Uu5Forms.FormText name = "name" placeholder = "Nový nadpis...." />
                         )}
@@ -98,13 +108,14 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
                 </Uu5Forms.Form.Provider>
 
                 <Uu5Forms.Form.Provider key = { modalOpen } onSubmit = { handleSubmit }>
-                    <Uu5Elements.Modal open = { modalOpen } onClose = { () => setModalOpen ( false )} header = "Přidej položku"
+                    <Uu5Elements.Modal open = { modalOpen } onClose = { () => setModalOpen ( false )} 
+                        header = {<Lsi import = { importLsi } path = {[ "ShoppingList", "addItemModal" ]} />}
                         footer = {
                             <div>
                                 <Uu5Forms.SubmitButton />
                             </div>
                         }>
-                        <Uu5Forms.FormText name = "name" placeholder = "Nová položka...." />
+                        <Uu5Forms.FormText name = "name" />
                     </Uu5Elements.Modal>
                 </Uu5Forms.Form.Provider>
             </Uu5Elements.Block>
