@@ -36,6 +36,12 @@ const Css = {
   
       return Config.Css.css({ maxWidth: maxWidth, margin: "0px auto", paddingLeft: 8, paddingRight: 8 });
     },
+    buttonContainer: {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap", 
+      justifyContent: "center", 
+  },
 };
 
 let List = createVisualComponent ({
@@ -88,22 +94,26 @@ let List = createVisualComponent ({
           </Uu5Elements.Link>
           </div>
           <div style = {{fontSize: "20px", color: "grey"}} className={Css.container(screenSize)}>
-            <Uu5Elements.Text colorScheme="building" significance="common" >
-              <Lsi import = { importLsi } path = {[ "Home", "chooseMember" ]} />{" "} 
-            </Uu5Elements.Text>
-            {INITIAL_DATA[0].memberList.map((member) => (
-              <Uu5Elements.Button
-                key = { member.id }
-                onClick = {() => handleMemberSelect ( member ) }
-                colorScheme = {selectedMember === member.id ? "building" : "building"}
-                significance = {selectedMember === member.id ? "highlighted" : "common"}
-                style={{
+            <div style = {{ marginBottom: "20px" }}>
+              <Uu5Elements.Text colorScheme="building" significance="common" >
+                <Lsi import = { importLsi } path = {[ "Home", "chooseMember" ]} />{" "} 
+              </Uu5Elements.Text>
+            </div>
+            <div style={Css.buttonContainer}>
+              {INITIAL_DATA[0].memberList.map((member) => (
+                <Uu5Elements.Button
+                  key = { member.id }
+                  onClick = {() => handleMemberSelect ( member ) }
+                  colorScheme = {selectedMember === member.id ? "building" : "building"}
+                  significance = {selectedMember === member.id ? "highlighted" : "common"}
+                  style={{
                   marginRight: "5px"  
-                }}
-              >
+                  }}
+                >
                 { member.name } { member.surname }
-              </Uu5Elements.Button>
-            ))}
+                </Uu5Elements.Button>
+              ))}
+            </div>
           </div> 
         </div>
         <div {...attrs} style = { { fontSize: "40px", color: "#000099" } } > 

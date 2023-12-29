@@ -33,6 +33,12 @@ const Css = {
   
       return Config.Css.css({ maxWidth: maxWidth, margin: "0px auto", paddingLeft: 8, paddingRight: 8 });
     },
+    buttonContainer: {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap", 
+      justifyContent: "center", 
+  },
 };
 
 let Home = createVisualComponent({
@@ -75,10 +81,13 @@ let Home = createVisualComponent({
               }}
             /> 
         </div>
-          <div style = {{ fontSize: "20px", color: "grey" }} className={Css.container(screenSize)}>
-            <Uu5Elements.Text colorScheme="building" significance="common" > 
+          <div style = {{ fontSize: "20px", color: "grey" }} className = {Css.container(screenSize)}>
+            <div style = {{ marginBottom: "20px"}}>
+            <Uu5Elements.Text colorScheme = "building" significance = "common" > 
               <Lsi import = { importLsi } path = {[ "Home", "chooseMember" ]} />{" "} 
             </Uu5Elements.Text>
+            </div>
+            <div style={Css.buttonContainer}>
             { INITIAL_DATA[0].memberList.map (( member ) => (
               <Uu5Elements.Button
                 key = { member.id }
@@ -92,6 +101,7 @@ let Home = createVisualComponent({
                 { member.name } { member.surname }
               </Uu5Elements.Button>
             ))}
+            </div>
           </div> 
           <div {...attrs} style = { { fontSize: "40px", color: "#000099" } }>
           <Uu5Elements.Text colorScheme="building" significance="common" >
