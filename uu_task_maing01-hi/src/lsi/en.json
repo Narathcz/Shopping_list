@@ -39,7 +39,9 @@
     "add": "+ Add list",
     "archButton1": "Without archived",
     "archButton2": "With archived",
-    "modalHeader": "Enter list name:"
+    "modalHeader": "Enter list name:",
+    "overview": "Overview",
+    "madalOverviewHeader": "Overview of shopping lists:"
   },
   "ListTile": {
     "owner": "Owner of the list:",
@@ -64,5 +66,9 @@
     "titleMemberList": "List of members:",
     "addMember": "+ Add member",
     "addMemberModal": "Enter name and surname..."
+  },
+  "RePieChart": {
+    "legend1": "Completed Items",
+    "legend2": "Unfinished Items"
   }
 }

@@ -6,12 +6,14 @@ import Uu5Forms from "uu5g05-forms";
 import ListTile from "./list-tile";
 import { INITIAL_DATA } from "./constants";
 import importLsi from "../lsi/import-lsi.js";
+import ReBarChart from "./re-bar-chart.js";
 
-function ListView ({ selectMember }) {
+function ListView ({ selectMember, background }) {
     
         const [nameList, setNameList] = useState ( INITIAL_DATA );
         const [showArchive, setShowArchive] = useState ( false );
         const [modalOpen, setModalOpen] = useState ( false );
+        const [chartModalOpen, setChartModalOpen] = useState(false);
 
         const filteredList = nameList.filter ( item =>
             item.memberList.some ( member => member.id === selectMember.id )
@@ -74,23 +76,33 @@ function ListView ({ selectMember }) {
                                 className = { Config.Css.css ({ flex: 1, marginRight: "8px" })}
                                 colorScheme = "building"
                                 significance = "distinct"
-                                style = {{ width: "calc(50% - 5px)" }}
+                                style = {{ width: "calc(33% - 5px)" }}
                             >
                                 <Lsi import = { importLsi } path = {[ "ListView", "add" ]} />
                             </Uu5Elements.Button>
                         
                             <Uu5Elements.Button
                                 onClick = {() => setShowArchive ( !showArchive )}
-                                className = { Config.Css.css ({ flex: 1 })}
+                                className = { Config.Css.css ({ flex: 1, marginRight: "8px" })}
                                 colorScheme = "building"
                                 significance = "distinct"
-                                style = {{ width: "calc(50% - 5px)" }}
+                                style = {{ width: "calc(33% - 5px)" }}
                             >
                                 { showArchive ? 
                                 <Lsi import = { importLsi } path = {[ "ListView", "archButton1" ]} /> 
                                 : 
                                 <Lsi import = { importLsi } path = {[ "ListView", "archButton2" ]} /> 
                                 }
+                            </Uu5Elements.Button> 
+
+                            <Uu5Elements.Button
+                                onClick = {() => setChartModalOpen(true)}
+                                className = { Config.Css.css ({ flex: 1 })}
+                                colorScheme = "building"
+                                significance = "distinct"
+                                style = {{ width: "calc(33% - 5px)" }}
+                            >
+                                <Lsi import = { importLsi } path = {[ "ListView", "overview" ]} /> 
                             </Uu5Elements.Button> 
                         </div>
 
@@ -118,9 +130,20 @@ function ListView ({ selectMember }) {
                                 <Uu5Forms.SubmitButton />
                             </div>
                         }>
-                        <Uu5Forms.FormText name = "name" />
+                        <Uu5Forms.FormText name = "name" maxLength = {10} />
                     </Uu5Elements.Modal>
             </Uu5Forms.Form.Provider>
+
+            {chartModalOpen && (
+                <Uu5Elements.Modal
+                    open = {chartModalOpen}
+                    onClose = {() => setChartModalOpen(false)}
+                    header = {<Lsi import = { importLsi } path = {[ "ListView", "madalOverviewHeader" ]} />}
+                    footer = {<div></div>}
+                >
+                    <ReBarChart filteredList = {filteredList} background = { background } /> 
+                </Uu5Elements.Modal>
+            )}
 
             </div>
         )

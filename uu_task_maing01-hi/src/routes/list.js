@@ -9,7 +9,6 @@ import { INITIAL_DATA } from "../core/constants.js";
 import { name } from "../core/helperfunctions.js";
 import importLsi from "../lsi/import-lsi.js";
 
-
 const Css = { 
   main: () =>
     Config.Css.css ({
@@ -63,14 +62,14 @@ let List = createVisualComponent ({
     const index = INITIAL_DATA.findIndex (( data ) => data.name === name);
 
     const handleMemberSelect = ( member ) => {
-      setCurrentUserRole ( member.owner ); 
+      setCurrentUserRole( member.owner ); 
       setSelectedMember( member.id );
     };
 
     return (
       <div>
         <div {...attrs} >
-          <div style={{ display: "flex", margin: "auto", width: "fit-content" }}>
+          <div style = {{ display: "flex", margin: "auto", width: "fit-content" }}>
             <Uu5Elements.LanguageSelector languageList = { ["cs", "en"] } />
             <Uu5Elements.Toggle 
               value = {!darkMode}
@@ -79,7 +78,7 @@ let List = createVisualComponent ({
               })}
               iconOff = "uugdsstencil-weather-moon"
               iconOn = "uugdsstencil-weather-sun"
-              style={{
+              style = {{
                 margin: "10px",
                 marginBottom: "25px",
                 height: "15px"  
@@ -88,25 +87,25 @@ let List = createVisualComponent ({
           </div>
           <div style = {{ fontSize: "20px", color: "grey", marginBottom: "20px" }}>
           <Uu5Elements.Link href = "home" >
-            <Uu5Elements.Text colorScheme="building" significance="common" >
+            <Uu5Elements.Text colorScheme = "building" significance = "common" >
               <Lsi import = { importLsi } path = {[ "List", "backButton" ]} />
             </Uu5Elements.Text>
           </Uu5Elements.Link>
           </div>
-          <div style = {{fontSize: "20px", color: "grey"}} className={Css.container(screenSize)}>
+          <div style = {{fontSize: "20px", color: "grey"}} className = {Css.container(screenSize)}>
             <div style = {{ marginBottom: "20px" }}>
-              <Uu5Elements.Text colorScheme="building" significance="common" >
+              <Uu5Elements.Text colorScheme = "building" significance = "common" >
                 <Lsi import = { importLsi } path = {[ "Home", "chooseMember" ]} />{" "} 
               </Uu5Elements.Text>
             </div>
-            <div style={Css.buttonContainer}>
+            <div style = {Css.buttonContainer}>
               {INITIAL_DATA[0].memberList.map((member) => (
                 <Uu5Elements.Button
                   key = { member.id }
                   onClick = {() => handleMemberSelect ( member ) }
                   colorScheme = {selectedMember === member.id ? "building" : "building"}
                   significance = {selectedMember === member.id ? "highlighted" : "common"}
-                  style={{
+                  style = {{
                   marginRight: "5px"  
                   }}
                 >
@@ -117,7 +116,7 @@ let List = createVisualComponent ({
           </div> 
         </div>
         <div {...attrs} style = { { fontSize: "40px", color: "#000099" } } > 
-          <Uu5Elements.Text colorScheme="building" significance="common" >
+          <Uu5Elements.Text colorScheme = "building" significance = "common" >
             <Lsi import = { importLsi } path = {[ "List", "title" ]} />{" "} 
           </Uu5Elements.Text>
         </div>

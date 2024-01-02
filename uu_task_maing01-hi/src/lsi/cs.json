@@ -38,8 +38,10 @@
   "ListView": {
     "add": "+ Přidat seznam",
     "archButton1": "Bez archivovaných",
-    "archButton2": "Včetně archivovaných",
-    "modalHeader": "Zadej název seznamu:"
+    "archButton2": "Všechny položky",
+    "modalHeader": "Zadej název seznamu:",
+    "overview": "Přehled",
+    "madalOverviewHeader": "Přehled nákupních seznamů:"
   },
   "ListTile": {
     "owner": "Vlastník seznamu:",
@@ -64,5 +66,9 @@
     "titleMemberList": "Seznam členů:",
     "addMember": "+ Přidat člena",
     "addMemberModal": "Zadel jméno a přijmení..."
+  },
+  "RePieChart": {
+    "legend1": "Dokončené položky",
+    "legend2": "Nedokončené položky"
   }
 }

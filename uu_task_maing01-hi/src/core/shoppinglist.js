@@ -1,11 +1,11 @@
-import { useState, Utils, Lsi } from "uu5g05";
+import { useState, Utils, Lsi, useEffect } from "uu5g05";
 import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms";
 import Item from "./item";
 import Config from "../config/config";
 import { INITIAL_DATA } from "./constants";
 import importLsi from "../lsi/import-lsi.js";
-
+import RePieChart from "./re-pie-chart.js";
 
 function ShoppingList ({ currentUserRole, indexNumber }) { 
     const [shoppingList, setShoppingList] = useState ( INITIAL_DATA[indexNumber]?.shoppingList || [] );
@@ -13,6 +13,24 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
     const [modal1Open, setModal1Open] = useState ( false );
     const [editHeader, setEditHeader] = useState( INITIAL_DATA[indexNumber]?.name || [] ); 
     const [showAll, setShowAll] = useState( false );
+    const [doneTrueCount, setDoneTrueCount] = useState(0); 
+    const [doneFalseCount, setDoneFalseCount] = useState(0); 
+
+    useEffect(() => {
+        let initialTrueCount = 0;
+        let initialFalseCount = 0;
+    
+        shoppingList.forEach((item) => {
+          if (item.done) {
+            initialFalseCount += 1;
+          } else {
+            initialTrueCount += 1;
+          }
+        });
+    
+        setDoneTrueCount(initialTrueCount);
+        setDoneFalseCount(initialFalseCount);
+      }, [shoppingList]); 
 
     function handleDelete ( id ) {
         setShoppingList (([...actualShoppingList]) => {
@@ -37,7 +55,7 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
         setEditHeader ( newHeader ); 
         setModal1Open ( false );
     } 
-
+    
     function handleStrikeText ( id ) {
         setShoppingList(( actualShoppingList ) => {
           const updatedList = actualShoppingList.map(( item ) => {
@@ -48,7 +66,7 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
           });
           return updatedList;
         });
-    }
+    } 
 
     return (
         <div> 
@@ -73,7 +91,7 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
                     <Uu5Elements.Button 
                         onClick= { () => setModalOpen ( true ) } 
                         className = { Config.Css.css ({ flex: 1, marginRight: "10px" })} 
-                        colorScheme="building" significance="distinct" >
+                        colorScheme = "building" significance = "distinct" >
                             <Lsi import = { importLsi } path = {[ "ShoppingList", "addButton" ]} />
                     </Uu5Elements.Button>
 
@@ -88,7 +106,7 @@ function ShoppingList ({ currentUserRole, indexNumber }) {
                             }
                     </Uu5Elements.Button>
                 </div>
-
+                <RePieChart doneTrueCount = {doneTrueCount} doneFalseCount = {doneFalseCount} />
                 <Uu5Forms.Form.Provider key = { modal1Open } onSubmit = { editHeader ? handleEditHeader : handleSubmit }>
                     <Uu5Elements.Modal
                         open = { modal1Open }

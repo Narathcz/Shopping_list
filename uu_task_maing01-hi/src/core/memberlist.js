@@ -32,15 +32,15 @@ function MemberList ({ currentUserRole, selectedMember, indexNumber }) {
     return ( 
         <div>
             <Uu5Elements.Button
-                    onClick={() => setShowMemberList( !showMemberList )}
-                    className={Config.Css.css({
+                    onClick = {() => setShowMemberList( !showMemberList )}
+                    className = {Config.Css.css({
                     width: "500px",
                     maxWidth: "100%",
                     marginTop: "20px",
                     marginBottom: "20px"
                     })}
-                    colorScheme="building"
-                    significance="distinct">
+                    colorScheme = "building"
+                    significance = "distinct">
                     {showMemberList ? 
                     <Lsi import = { importLsi } path = {[ "MemberList", "hideMemberList" ]} />
                     : 
@@ -50,8 +50,8 @@ function MemberList ({ currentUserRole, selectedMember, indexNumber }) {
             
             {showMemberList && (
             <Uu5Elements.Block 
-                    header = { <span style={{ color: "#000099" }}>{ showMemberList && 
-                        <Uu5Elements.Text colorScheme="building" significance="common" >
+                    header = { <span style = {{ color: "#000099" }}>{ showMemberList && 
+                        <Uu5Elements.Text colorScheme = "building" significance = "common" >
                             <Lsi import = { importLsi } path = {[ "MemberList", "titleMemberList" ]} />{" "}
                         </Uu5Elements.Text>
                     }</span> }
@@ -74,7 +74,7 @@ function MemberList ({ currentUserRole, selectedMember, indexNumber }) {
 
                 { currentUserRole  && ( 
                 <Uu5Elements.Button 
-                    onClick= { () => setModal2Open ( true )} 
+                    onClick = { () => setModal2Open ( true )} 
                     className = { Config.Css.css ({ width: "500px", maxWidth: "100%", marginTop: "25px"})} 
                     colorScheme = "building" significance = "distinct" >
                         <Lsi import = { importLsi } path = {[ "MemberList", "addMember" ]} />
@@ -90,9 +90,9 @@ function MemberList ({ currentUserRole, selectedMember, indexNumber }) {
                                 <Uu5Forms.SubmitButton />
                             </div>
                         }>
-                        <div style={{ display: "flex", flexDirection: "row", gap: "15px" }}>
-                            <Uu5Forms.FormText name = "name" style={{ width: "270px" }} />
-                            <Uu5Forms.FormText name = "surname" style={{ width: "270px" }} />
+                        <div style = {{ display: "flex", flexDirection: "row", gap: "15px" }}>
+                            <Uu5Forms.FormText name = "name" style = {{ width: "270px" }} />
+                            <Uu5Forms.FormText name = "surname" style = {{ width: "270px" }} />
                         </div>
                     </Uu5Elements.Modal>
                 </Uu5Forms.Form.Provider>

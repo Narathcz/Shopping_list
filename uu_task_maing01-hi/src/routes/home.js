@@ -65,7 +65,7 @@ let Home = createVisualComponent({
     return (
       
       <div {...attrs} >
-        <div style={{ display: "flex", margin: "auto", width: "fit-content" }}>
+        <div style = {{ display: "flex", margin: "auto", width: "fit-content" }}>
             <Uu5Elements.LanguageSelector languageList = { ["cs", "en"] } />
             <Uu5Elements.Toggle 
               value = {!darkMode}
@@ -74,7 +74,7 @@ let Home = createVisualComponent({
               })}
               iconOff = "uugdsstencil-weather-moon"
               iconOn = "uugdsstencil-weather-sun"
-              style={{
+              style = {{
                 margin: "10px",
                 marginBottom: "25px",
                 height: "15px"
@@ -87,28 +87,29 @@ let Home = createVisualComponent({
               <Lsi import = { importLsi } path = {[ "Home", "chooseMember" ]} />{" "} 
             </Uu5Elements.Text>
             </div>
-            <div style={Css.buttonContainer}>
-            { INITIAL_DATA[0].memberList.map (( member ) => (
-              <Uu5Elements.Button
-                key = { member.id }
-                onClick = {() => handleMemberSelect ( member ) }
-                colorScheme = {selectedMember === member.id ? "building" : "building"}
-                significance = {selectedMember === member.id ? "highlighted" : "common"}
-                style={{
-                  marginRight: "5px"  
-                }}
-              >
+            <div style = { Css.buttonContainer }>
+              { INITIAL_DATA[0].memberList.map (( member ) => (
+                <Uu5Elements.Button
+                  key = { member.id }
+                  onClick = {() => handleMemberSelect ( member ) }
+                  colorScheme = {selectedMember === member.id ? "building" : "building"}
+                  significance = {selectedMember === member.id ? "highlighted" : "common"}
+                  style={{
+                    marginRight: "5px"  
+                  }}
+                >
                 { member.name } { member.surname }
-              </Uu5Elements.Button>
-            ))}
+                </Uu5Elements.Button>
+              ))}
             </div>
           </div> 
           <div {...attrs} style = { { fontSize: "40px", color: "#000099" } }>
-          <Uu5Elements.Text colorScheme="building" significance="common" >
-            <Lsi import = { importLsi } path = {[ "Home", "title" ]} />
-          </Uu5Elements.Text></div>
-          <div style = {{ margin: "auto", width: "fit-content" }}>
-            <ListView selectMember = { selectMember }/>
+            <Uu5Elements.Text colorScheme = "building" significance = "common" >
+              <Lsi import = { importLsi } path = {[ "Home", "title" ]} />
+            </Uu5Elements.Text>
+          </div>
+          <div style = {{ margin: "auto", width: "fit-content" }}> 
+            <ListView selectMember = { selectMember } background = { background } />
           </div>
       </div> 
       
